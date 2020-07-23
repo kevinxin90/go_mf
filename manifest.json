@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "__metadata__": {
+        "license_url": "http://current.geneontology.org/ontology/go-basic.obo",
+        "licence": "",
+        "url": "http://current.geneontology.org/ontology/go-basic.obo"
+    },
+    "requires": [
+        "networkx",
+        "obonet"
+    ],
+    "dumper": {
+        "data_url": "http://current.geneontology.org/ontology/go-basic.obo",
+        "uncompress": false,
+        "release": "version:get_release"
+    },
+    "uploader": {
+        "parser": "parser:load_data",
+        "on_duplicates": "error"
+    }
+}
