@@ -35,9 +35,18 @@ def load_data(data_folder):
             if rec.get("creation_date"):
                 rec.pop("creation_date")
             if rec.get("relationship"):
+                rels = {}
                 for rel in rec.get("relationship"):
                     predicate, val = rel.split(' ')
                     prefix = val.split(':')[0]
-                    rec[predicate] = {prefix.lower(): val}
+                    if predicate not in rels:
+                        rels[predicate] = defaultdict(set)
+                    if prefix.lower() not in rels[predicate]:
+                        rels[predicate][prefix.lower()].add(val)
+                for m, n in rels.items():
+                    for p, q in n.items():
+                        n[p] = list(q)
+                    rels[m] = dict(n)
+                rec.update(rels)
                 rec.pop("relationship")
             yield rec
