@@ -41,6 +41,7 @@ def load_data(data_folder):
         if item.startswith("GO:") and graph.nodes[item]['namespace'] == "molecular_function":
             rec = graph.nodes[item]
             rec["_id"] = item
+            rec["go"] = item
             if rec.get("is_a"):
                 rec["parents"] = [parent for parent in rec.pop("is_a") if parent.startswith("GO:")]
             if rec.get("xref"):
